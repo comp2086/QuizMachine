@@ -5,7 +5,6 @@ using namespace std;
 // Constructor
 Storage::Storage()
 {
-	this->outFileUsers = ofstream(this->usersFile, ios::out);
 }
 
 Storage::~Storage()
@@ -15,10 +14,19 @@ Storage::~Storage()
 void Storage::saveNewUser(User &user)
 {
 	string toFile = "";
+	outFileStream.open(usersFile, ios::app);
 
 	toFile += user.getFirstName() + "\n";
 	toFile += user.getLastName() + "\n";
-	toFile += user.getHighestScore();
+	toFile += to_string(user.getHighestScore());
 
-	outFileUsers << toFile << endl;
+	outFileStream << toFile << endl;
+
+	outFileStream.close();
+}
+
+Question Storage::getQuestion()
+{
+	// Read question from file
+	// ...
 }
