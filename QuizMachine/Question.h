@@ -13,6 +13,6 @@ public:
 
 private:
 	std::string question;
-	std::vector<string> answers;
+	std::vector<std::string> answers;
 };
 

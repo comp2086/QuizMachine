@@ -148,13 +148,18 @@
   <ItemGroup>
     <ClInclude Include="Question.h" />
     <ClInclude Include="Quiz.h" />
+    <ClInclude Include="Storage.h" />
     <ClInclude Include="User.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Question.cpp" />
     <ClCompile Include="Quiz.cpp" />
+    <ClCompile Include="Storage.cpp" />
     <ClCompile Include="User.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Users.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

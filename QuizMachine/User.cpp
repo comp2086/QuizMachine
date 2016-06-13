@@ -2,11 +2,20 @@
 
 using namespace std;
 
-// Constructor
+// Constructor without highest score
 User::User(string firstName, string lastName)
 {
 	this->firstName = firstName;
 	this->lastName = lastName;
+	this->highestScore = -1;
+}
+
+// Constructor with highest score
+User::User(string firstName, string lastName, float highestScore)
+{
+	this->firstName = firstName;
+	this->lastName = lastName;
+	this->highestScore = highestScore;
 }
 
 // Destructor

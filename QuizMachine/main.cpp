@@ -1,16 +1,14 @@
 #include <iostream>
-#include "User.h";
+#include "Storage.h"
 
 using namespace std;
 
 int main()
 {
-	User u = User("Alex", "123");
-	
-	u.setFirstName("a");
-	u.setLastName("a");
+	Storage storage;
+	User user("Alex", "123");
 
-	cout << u.getFirstName() << " " << u.getLastName() << endl;
+	storage.saveNewUser(user);
 
 	cin.get();
 	return 0;
