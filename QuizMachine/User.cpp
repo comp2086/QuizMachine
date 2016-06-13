@@ -3,10 +3,10 @@
 using namespace std;
 
 // Constructor
-User::User(string userName, string password)
+User::User(string firstName, string lastName)
 {
-	this->userName = userName;
-	this->password = password;
+	this->firstName = firstName;
+	this->lastName = lastName;
 }
 
 // Destructor
@@ -14,22 +14,32 @@ User::~User()
 {
 }
 
-void User::setUserName(string userName)
+void User::setFirstName(string firstName)
 {
-	this->userName = userName;
+	this->firstName = firstName;
 }
 
-void User::setPassword(string password)
+void User::setLastName(string lastName)
 {
-	this->password = password;
+	this->lastName = lastName;
 }
 
-string User::getUserName() const
+void User::setHighestScore(float highestScore)
 {
-	return this->userName;
+	this->highestScore = highestScore;
 }
 
-string User::getPassword() const
+string User::getFirstName() const
 {
-	return this->password;
+	return this->firstName;
+}
+
+string User::getLastName() const
+{
+	return this->lastName;
+}
+
+float User::getHighestScore() const
+{
+	return this->highestScore;
 }

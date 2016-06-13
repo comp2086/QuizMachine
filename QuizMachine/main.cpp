@@ -7,10 +7,10 @@ int main()
 {
 	User u = User("Alex", "123");
 	
-	u.setUserName("xelA");
-	u.setPassword("456");
+	u.setFirstName("a");
+	u.setLastName("a");
 
-	cout << u.getUserName() << " " << u.getPassword() << endl;
+	cout << u.getFirstName() << " " << u.getLastName() << endl;
 
 	cin.get();
 	return 0;
