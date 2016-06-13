@@ -11,7 +11,8 @@ public:
 	Storage();
 	~Storage();
 	void saveNewUser(User &user);
-	Question getQuestion();
+	Question getQuestion() const;
+
 private:
 	const std::string usersFile = "Users.txt";
 	const std::string questionsFile = "Questions.txt";

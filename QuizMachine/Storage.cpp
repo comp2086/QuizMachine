@@ -2,7 +2,7 @@
 
 using namespace std;
 
-// Constructor
+// Default no arguments constructor
 Storage::Storage()
 {
 }
@@ -25,8 +25,12 @@ void Storage::saveNewUser(User &user)
 	outFileStream.close();
 }
 
-Question Storage::getQuestion()
+Question Storage::getQuestion() const
 {
 	// Read question from file
+	Question question;
+
 	// ...
+
+	return question;
 }

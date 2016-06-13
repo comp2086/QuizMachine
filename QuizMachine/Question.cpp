@@ -2,6 +2,11 @@
 
 using namespace std;
 
+// Default no arguments constructor
+Question::Question()
+{
+}
+
 // Constructor
 Question::Question(string question, vector<string> answers)
 {

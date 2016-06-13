@@ -2,6 +2,11 @@
 
 using namespace std;
 
+// Default no arguments constructor
+User::User()
+{
+}
+
 // Constructor without highest score
 User::User(string firstName, string lastName)
 {

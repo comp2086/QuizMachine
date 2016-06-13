@@ -3,6 +3,7 @@
 class User
 {
 public:
+	User();
 	User(std::string, std::string);
 	User(std::string, std::string, float);
 	~User();

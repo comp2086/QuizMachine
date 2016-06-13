@@ -4,6 +4,7 @@
 class Question
 {
 public:
+	Question();
 	Question(std::string, std::vector<std::string>);
 	~Question();
 	void setQuestion(std::string);
