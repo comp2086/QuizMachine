@@ -1,19 +1,17 @@
 #include <string>
-#include <vector>
+#include <array>
 
 class Question
 {
 public:
 	Question();
-	Question(std::string, std::vector<std::string>);
-	~Question();
+	Question(std::string, std::array<std::string, 4>);
 	void setQuestion(std::string);
-	void setAnswers(std::vector<std::string>);
+	void setAnswers(std::array<std::string, 4>);
 	std::string getQuestion() const;
-	std::vector<std::string> getAnswers() const;
-
+	std::array<std::string, 4> getAnswers() const;
 private:
 	std::string question;
-	std::vector<std::string> answers;
+	std::array<std::string, 4> answers;
 };
 

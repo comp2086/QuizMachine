@@ -8,16 +8,10 @@ Question::Question()
 }
 
 // Constructor
-Question::Question(string question, vector<string> answers)
+Question::Question(string question, array<string, 4> answers)
 {
 	this->question = question;
 	this->answers = answers;
-}
-
-// Destructor
-Question::~Question()
-{
-
 }
 
 void Question::setQuestion(string question)
@@ -25,7 +19,7 @@ void Question::setQuestion(string question)
 	this->question = question;
 }
 
-void Question::setAnswers(vector<string> answers)
+void Question::setAnswers(array<string, 4> answers)
 {
 	this->answers = answers;
 }
@@ -35,7 +29,7 @@ string Question::getQuestion() const
 	return this->question;
 }
 
-vector<string> Question::getAnswers() const
+array<string, 4> Question::getAnswers() const
 {
 	return this->answers;
 }

@@ -11,6 +11,8 @@ namespace storage
 	User findUser(std::string, std::string);
 	Question getQuestion(int questionNumber);
 	int getQuestionsCount();
+
+	static long location = 0;
 	const std::string usersFile = "Users.txt";
 	const std::string questionsFile = "Questions.txt";
 };

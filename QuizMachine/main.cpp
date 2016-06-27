@@ -11,7 +11,7 @@ int main()
 	string firstName, lastName;
 
 	// Ask for user's first/last name
-	cout << "Hello!\nFirst Name: ";
+	cout << "First Name: ";
 	cin >> firstName;
 	cout << "Last Name: ";
 	cin >> lastName;
@@ -29,6 +29,12 @@ int main()
 	cout << "There're " << questionsCount << " questions in this quiz" << endl;
 
 	// 2. Display a question
+	for (int i = 1; i <= questionsCount; i++)
+	{
+		Question question = getQuestion(i);
+		cout << question.getQuestion() << endl;
+	}
+
 
 	// 3. Display the rest of the questions
 

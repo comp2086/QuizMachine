@@ -50,11 +50,23 @@ User storage::findUser(string firstName, string lastName)
 
 Question storage::getQuestion(int questionNumber)
 {
-	// -Read question from file-
+	string q;
+	array<string, 4> answers;
 	Question question;
+	ifstream inFileStream(questionsFile, ios::in);
 
-	// 1. Based on the argument, extract the question from a file 
-	//	  and return to the caller
+	// Move to the next location
+	inFileStream.seekg(location);
+
+	// 1. Based on the argument, extract the question from a file
+	inFileStream >> q >> answers[0] >> answers[1] >> answers[2] >> answers[3];
+	
+	// Save location of the next question
+	location = inFileStream.tellg();
+
+	// Create a question object and return it
+
+	question = Question(q, answers);
 
 	return question;
 }
