@@ -5,18 +5,16 @@ class User
 public:
 	User();
 	User(std::string, std::string);
-	User(std::string, std::string, float);
-	~User();
+	User(std::string, std::string, double);
 	void setFirstName(std::string);
 	void setLastName(std::string);
-	void setHighestScore(float);
+	void setScore(double);
 	std::string getFirstName() const;
 	std::string getLastName() const;
-	float getHighestScore() const;
+	double getScore() const;
 
 private:
-	std::string firstName;
-	std::string lastName;
-	float highestScore;
+	std::string firstName, lastName;
+	double score;
 };
 

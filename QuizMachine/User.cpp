@@ -12,20 +12,15 @@ User::User(string firstName, string lastName)
 {
 	this->firstName = firstName;
 	this->lastName = lastName;
-	this->highestScore = -1;
+	this->score = -1;
 }
 
 // Constructor with highest score
-User::User(string firstName, string lastName, float highestScore)
+User::User(string firstName, string lastName, double score)
 {
 	this->firstName = firstName;
 	this->lastName = lastName;
-	this->highestScore = highestScore;
-}
-
-// Destructor
-User::~User()
-{
+	this->score = score;
 }
 
 void User::setFirstName(string firstName)
@@ -38,9 +33,9 @@ void User::setLastName(string lastName)
 	this->lastName = lastName;
 }
 
-void User::setHighestScore(float highestScore)
+void User::setScore(double score)
 {
-	this->highestScore = highestScore;
+	this->score = score;
 }
 
 string User::getFirstName() const
@@ -53,7 +48,7 @@ string User::getLastName() const
 	return this->lastName;
 }
 
-float User::getHighestScore() const
+double User::getScore() const
 {
-	return this->highestScore;
+	return this->score;
 }

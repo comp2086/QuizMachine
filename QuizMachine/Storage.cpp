@@ -2,45 +2,73 @@
 
 using namespace std;
 
-// Default no arguments constructor
-Storage::Storage()
-{
-}
-
-Storage::~Storage()
-{
-}
-
-void Storage::saveNewUser(User &user)
+void storage::saveNewUser(User &user)
 {
 	string toFile = "";
-	this->outFileStream.open(usersFile, ios::app);
+	ofstream outFileStream(usersFile, ios::app);
 
-	toFile += user.getFirstName() + "\n";
-	toFile += user.getLastName() + "\n";
-	toFile += to_string(user.getHighestScore());
+	toFile += user.getFirstName() + ' ';
+	toFile += user.getLastName() + ' ';
+	toFile += to_string(user.getScore());
 
-	this->outFileStream << toFile << endl;
-	this->outFileStream.close();
+	outFileStream << toFile << endl;
+	outFileStream.close();
 }
 
-User Storage::getUser(string lastName) const
+User storage::findUser(string firstName, string lastName)
 {
-	User user;
-	
-	// this->inFileStream.open()
-	// ... find a user with the same lastname
+	User user(firstName, lastName);
+	string fName, lName;
+	double score;
+	bool stop = false;
+
+	ifstream inFileStream(usersFile, ios::in);
+
+	if (!inFileStream)
+	{
+		cerr << "File could not be opened" << endl;
+		exit(EXIT_FAILURE);
+	}
+
+	// Read from the file until a match is found or EOF
+	do
+	{
+		inFileStream >> fName >> lName >> score;
+
+		if (user.getFirstName() == fName &&
+			user.getLastName() == lName)
+		{
+			user.setScore(score);
+			stop = true;
+		}
+	} while (!stop && !inFileStream.eof());
+
+	inFileStream.close();
 
 	return user;
 }
 
-Question Storage::getQuestion() const
+Question storage::getQuestion(int questionNumber)
 {
-	// Read question from file
+	// -Read question from file-
 	Question question;
 
-	// ... need to memorize location of the next question 
-	// and start reading from there (+5 lines, maybe random +5 increments?)
+	// 1. Based on the argument, extract the question from a file 
+	//	  and return to the caller
 
 	return question;
+}
+
+int storage::getQuestionsCount()
+{
+	int count = 0;
+	string line;
+	ifstream inFileStream(questionsFile, ios::in);
+
+	while (getline(inFileStream, line))
+	{
+		count += 1;
+	}
+
+	return count;
 }

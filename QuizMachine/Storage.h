@@ -5,19 +5,13 @@
 #include <fstream>
 #include <cstdlib>
 
-class Storage
+namespace storage
 {
-public:
-	Storage();
-	~Storage();
 	void saveNewUser(User &user);
-	User getUser(string) const;
-	Question getQuestion() const;
-
-private:
+	User findUser(std::string, std::string);
+	Question getQuestion(int questionNumber);
+	int getQuestionsCount();
 	const std::string usersFile = "Users.txt";
 	const std::string questionsFile = "Questions.txt";
-	std::ofstream outFileStream;
-	std::ifstream inFileStream;
 };
 
