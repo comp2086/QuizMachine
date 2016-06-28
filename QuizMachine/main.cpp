@@ -7,11 +7,12 @@ using namespace storage;
 
 int main()
 {
+	bool newUser = false;
 	int answer = 0, correctAnswersCount = 0;
 	string firstName, lastName;
 	char runQuizAgain = 'n';
-	int questionsCount = getQuestionsCount();
-	int scoreCounter = getQuestionsCount();
+	int questionsCounter = getQuestionsCount();
+	int totalQuestions = questionsCounter;
 
 	// Ask for user's first/last name
 	cout << "First Name: ";
@@ -27,15 +28,18 @@ int main()
 		<< user.getScore() << ' '
 		<< endl;
 	else
+	{
+		newUser = true;
 		cout << "This is your 1st attempt, do your best." << endl;
+	}	
 
 	// Display the total number of questions
-	cout << "There're " << questionsCount 
+	cout << "There're " << questionsCounter 
 		<< " questions in this quiz. Let's get started!" << endl;
 
 	do
 	{
-		while (questionsCount != 0)
+		while (questionsCounter != 0)
 		{
 			// Display a question
 			Question question = getQuestion();
@@ -59,29 +63,29 @@ int main()
 				correctAnswersCount += 1;
 
 			// Display the number of correct answers
-			if (questionsCount > 1)
+			if (questionsCounter > 1)
 				cout << "Score: " << correctAnswersCount 
-				<< "/" << scoreCounter << endl;
+				<< "/" << totalQuestions << endl;
 
 			answer = 0;
-			questionsCount -= 1;
+			questionsCounter -= 1;
 		}
 
 		// Display the score
-		float finalScore = static_cast<float>(correctAnswersCount) / scoreCounter * 100;
+		float finalScore = static_cast<float>(correctAnswersCount) / totalQuestions * 100;
 		cout << "Your final score is: " 
 			<< setprecision(3) << finalScore 
 			<< '%' << endl;
 
-		// Save the new score (if higher than the previous one)
+		// Save the new score if higher than the previous one
 		if (user.getScore() < finalScore)
 		{
 			user.setScore(finalScore);
-			saveNewUser(user);
+			saveUser(user, newUser);
 		}
 
 		// Reset the quiz variables and prompt to run the quiz again
-		questionsCount = getQuestionsCount();
+		questionsCounter = getQuestionsCount();
 		correctAnswersCount = 0;
 		cout << "One more time (y/n): ";
 		cin >> runQuizAgain;

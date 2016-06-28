@@ -5,7 +5,7 @@
 
 namespace storage
 {
-	void saveNewUser(User &user);
+	void saveUser(User &user, bool);
 	User findUser(std::string, std::string);
 	Question getQuestion();
 	int getQuestionsCount();
