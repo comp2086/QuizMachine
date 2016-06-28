@@ -11,8 +11,9 @@ namespace storage
 	User findUser(std::string, std::string);
 	Question getQuestion();
 	int getQuestionsCount();
+	void resetLocation();
 
-	static unsigned int location = 0;
+	static unsigned int location;
 	const std::string usersFile = "Users.txt";
 	const std::string questionsFile = "Questions.txt";
 };

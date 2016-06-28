@@ -86,3 +86,8 @@ int storage::getQuestionsCount()
 
 	return count;
 }
+
+void storage::resetLocation()
+{
+	location = 0;
+}
