@@ -9,10 +9,10 @@ namespace storage
 {
 	void saveNewUser(User &user);
 	User findUser(std::string, std::string);
-	Question getQuestion(int questionNumber);
+	Question getQuestion();
 	int getQuestionsCount();
 
-	static long location = 0;
+	static unsigned int location = 0;
 	const std::string usersFile = "Users.txt";
 	const std::string questionsFile = "Questions.txt";
 };

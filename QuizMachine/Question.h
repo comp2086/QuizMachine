@@ -9,7 +9,7 @@ public:
 	void setQuestion(std::string);
 	void setAnswers(std::array<std::string, 4>);
 	std::string getQuestion() const;
-	std::array<std::string, 4> getAnswers() const;
+	std::string getAnswer(int) const;
 private:
 	std::string question;
 	std::array<std::string, 4> answers;

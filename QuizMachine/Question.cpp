@@ -1,4 +1,5 @@
 #include "Question.h"
+#include <string>
 
 using namespace std;
 
@@ -29,8 +30,8 @@ string Question::getQuestion() const
 	return this->question;
 }
 
-array<string, 4> Question::getAnswers() const
+string Question::getAnswer(int index) const
 {
-	return this->answers;
+	return this->answers[index];
 }
 

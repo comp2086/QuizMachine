@@ -48,7 +48,7 @@ User storage::findUser(string firstName, string lastName)
 	return user;
 }
 
-Question storage::getQuestion(int questionNumber)
+Question storage::getQuestion()
 {
 	string q;
 	array<string, 4> answers;
@@ -62,10 +62,12 @@ Question storage::getQuestion(int questionNumber)
 	inFileStream >> q >> answers[0] >> answers[1] >> answers[2] >> answers[3];
 	
 	// Save location of the next question
-	location = inFileStream.tellg();
+	location = static_cast<unsigned int>(inFileStream.tellg());
+
+	// Close the stream
+	inFileStream.close();
 
 	// Create a question object and return it
-
 	question = Question(q, answers);
 
 	return question;

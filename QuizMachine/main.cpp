@@ -7,43 +7,57 @@ using namespace storage;
 
 int main()
 {
-	int questionsCount;
+	int answer = 0;
+	int questionsCount = getQuestionsCount();
 	string firstName, lastName;
+	char runQuizAgain = 'n';
 
-	// Ask for user's first/last name
-	cout << "First Name: ";
-	cin >> firstName;
-	cout << "Last Name: ";
-	cin >> lastName;
+	do
+	{ 
+		// Ask for user's first/last name
+		cout << "First Name: ";
+		cin >> firstName;
+		cout << "Last Name: ";
+		cin >> lastName;
 
-	// Check if they have already written the quiz
-	User user = findUser(firstName, lastName);
-	if (user.getScore() != -1.0)
-		cout << "Your highest score is: " << setprecision(3) << user.getScore();
-	else
-		cout << "This is your 1st attempt!" << endl;
+		// Check if a user has already written the quiz
+		User user = findUser(firstName, lastName);
+		if (user.getScore() != -1.0)
+			cout << "Your highest score is: " << setprecision(3) << user.getScore() << endl;
+		else
+			cout << "This is your 1st attempt, do your best." << endl;
 
-	// -Run the quiz-
-	// 1. Display the total number of questions
-	questionsCount = getQuestionsCount();
-	cout << "There're " << questionsCount << " questions in this quiz" << endl;
+		// Display the total number of questions
+		cout << "There're " << questionsCount << " questions in this quiz" << endl;
 
-	// 2. Display a question
-	for (int i = 1; i <= questionsCount; i++)
-	{
-		Question question = getQuestion(i);
-		cout << question.getQuestion() << endl;
-	}
+		// Display a question
+		for (int i = 1; i <= questionsCount; i++)
+		{
+			Question question = getQuestion();
+			cout << question.getQuestion() << '?' << endl;
 
+			for (int g = 0; g <= 3; g++)
+			{
+				cout << g + 1 << ". " << question.getAnswer(g) << endl;
+			}
+			
+			cout << "Your answer (1/2/3/4): ";
 
-	// 3. Display the rest of the questions
+			// Loop until the correct input is given
+			cin >> answer;
 
-	// 4. Display the score
+			// Check if the answer given is correct
+		}
 
-	// 5. Save the new score (if higher than the previous one)
+		// Display the score
 
-	// 6. Ask to run the quiz again
+		// Save the new score (if higher than the previous one)
 
-	// 7. Quit
+		// Ask to run the quiz again
+		cout << "One more time (y/n): ";
+		cin >> runQuizAgain;
+	} while (tolower(runQuizAgain) == 'y');
+
+	// Quit
 	return 0;
 }
