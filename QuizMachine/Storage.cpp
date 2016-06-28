@@ -64,6 +64,10 @@ Question storage::getQuestion()
 	// Save location of the next question
 	location = static_cast<unsigned int>(inFileStream.tellg());
 
+	// Reset locatio if this is the end of file
+	if (inFileStream.eof())
+		location = 0;
+
 	// Close the stream
 	inFileStream.close();
 
@@ -85,9 +89,4 @@ int storage::getQuestionsCount()
 	}
 
 	return count;
-}
-
-void storage::resetLocation()
-{
-	location = 0;
 }

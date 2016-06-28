@@ -68,7 +68,6 @@ int main()
 		// Save the new score (if higher than the previous one)
 
 		// Reset the quiz variables and prompt to run the quiz again
-		resetLocation();
 		questionsCount = getQuestionsCount();
 		correctAnswersCount = 0;
 		cout << "One more time (y/n): ";
