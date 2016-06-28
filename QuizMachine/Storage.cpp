@@ -1,17 +1,20 @@
 #include "Storage.h"
+#include <iostream>
+#include <fstream>
+#include <cstdlib>
+#include <iomanip>
 
 using namespace std;
 
 void storage::saveNewUser(User &user)
 {
 	string toFile = "";
-	ofstream outFileStream(usersFile, ios::app);
+	ofstream outFileStream(usersFile, ios::out);
 
-	toFile += user.getFirstName() + ' ';
-	toFile += user.getLastName() + ' ';
-	toFile += to_string(user.getScore());
-
-	outFileStream << toFile << endl;
+	outFileStream << user.getFirstName() << ' ' 
+		<< user.getLastName() << ' '
+		<< setprecision(3) << user.getScore() 
+		<< endl;
 	outFileStream.close();
 }
 

@@ -22,12 +22,16 @@ int main()
 	// Check if a user has already written the quiz
 	User user = findUser(firstName, lastName);
 	if (user.getScore() != -1.0)
-		cout << "Your highest score is: " << setprecision(3) << user.getScore() << endl;
+		cout << "Your highest score is: " 
+		<< setprecision(3)
+		<< user.getScore() << ' '
+		<< endl;
 	else
 		cout << "This is your 1st attempt, do your best." << endl;
 
 	// Display the total number of questions
-	cout << "There're " << questionsCount << " questions in this quiz. Let's get started!" << endl;
+	cout << "There're " << questionsCount 
+		<< " questions in this quiz. Let's get started!" << endl;
 
 	do
 	{
@@ -56,16 +60,25 @@ int main()
 
 			// Display the number of correct answers
 			if (questionsCount > 1)
-				cout << "Score: " << correctAnswersCount << "/" << scoreCounter << endl;
+				cout << "Score: " << correctAnswersCount 
+				<< "/" << scoreCounter << endl;
 
 			answer = 0;
-			questionsCount -= 1;		
+			questionsCount -= 1;
 		}
 
 		// Display the score
-		cout << "Your final score is: " << setprecision(3) << static_cast<float>(correctAnswersCount)/scoreCounter * 100 << '%' << endl;
+		float finalScore = static_cast<float>(correctAnswersCount) / scoreCounter * 100;
+		cout << "Your final score is: " 
+			<< setprecision(3) << finalScore 
+			<< '%' << endl;
 
 		// Save the new score (if higher than the previous one)
+		if (user.getScore() < finalScore)
+		{
+			user.setScore(finalScore);
+			saveNewUser(user);
+		}
 
 		// Reset the quiz variables and prompt to run the quiz again
 		questionsCount = getQuestionsCount();
