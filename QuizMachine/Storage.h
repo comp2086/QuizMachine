@@ -13,5 +13,6 @@ namespace storage
 	static unsigned int location;
 	const std::string usersFile = "Users.txt";
 	const std::string questionsFile = "Questions.txt";
+	const int answersCount = 4;
 };
 

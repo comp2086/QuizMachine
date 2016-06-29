@@ -22,11 +22,11 @@ void storage::saveUser(User &user, bool newUser = false)
 		exit(EXIT_FAILURE);
 	}
 
-	do
+	while (inFileStream >> fName >> lName >> score)
 	{
-		inFileStream >> fName >> lName >> score;
 		users->push_back(User(fName, lName, score));
-	} while (!inFileStream.eof());
+	} 
+	inFileStream.close();
 
 	// Add a new user
 	if (newUser)
@@ -65,7 +65,6 @@ void storage::saveUser(User &user, bool newUser = false)
 			<< setprecision(3) << user_.getScore() << endl;
 	}
 
-	inFileStream.close();
 	outFileStream.close();
 
 	// Free up memory
@@ -108,15 +107,20 @@ User storage::findUser(string firstName, string lastName)
 Question storage::getQuestion()
 {
 	string q;
-	array<string, 4> answers;
+	array<string, answersCount> answers;
 	Question question;
 	ifstream inFileStream(questionsFile, ios::in);
 
 	// Move to the next location
 	inFileStream.seekg(location);
 
-	// 1. Based on the argument, extract the question from a file
-	inFileStream >> q >> answers[0] >> answers[1] >> answers[2] >> answers[3];
+	// Extract a question and its answers from the file
+	getline(inFileStream, q);
+
+	for (int i = 0; i < answersCount; i++)
+	{
+		getline(inFileStream, answers[i]);
+	}
 
 	// Save location of the next question
 	location = static_cast<unsigned int>(inFileStream.tellg());
@@ -146,5 +150,6 @@ int storage::getQuestionsCount()
 	}
 	inFileStream.close();
 
-	return count;
+	// A question spans around 5 lines
+	return count/5;
 }
