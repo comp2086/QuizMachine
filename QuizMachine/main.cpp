@@ -19,6 +19,9 @@ int main()
 	char runQuizAgain = 'n';
 	bool newUser = false;
 
+	// Welcome
+	cout << "Hi. Welcome to the \"Would you survive the end of the World\" quiz!\n" << endl;
+
 	// Ask for user's first/last name
 	cout << "First Name: ";
 	firstName = validateName();
@@ -28,20 +31,17 @@ int main()
 	// Check if a user has already written the quiz
 	User user = findUser(firstName, lastName);
 	if (user.getScore() != -1.0)
-		cout << "Your highest score is: " 
+		cout << "\nYour highest score is: " 
 		<< setprecision(3)
 		<< user.getScore() << ' '
 		<< endl;
 	else
 	{
 		newUser = true;
-		cout << "This is your 1st attempt, do your best." << endl;
+		cout << "\nThis is your 1st attempt, do your best." << endl;
 	}	
 
-	// Display the total number of questions
-	cout << "There're " << questionsCounter 
-		<< " questions in this quiz. Let's get started!" << endl;
-
+	// Run the quiz
 	do
 	{
 		// Tell cin to ignore everything or ignore until there's a newline character
@@ -51,7 +51,7 @@ int main()
 		{
 			// Display a question
 			Question question = getQuestion();
-			cout << '\n' << question.getQuestion() << '?' << endl;
+			cout << '\n' << question.getQuestion() << "?\n" << endl;
 
 			// Display answers
 			for (int g = 0; g <= 3; g++)
