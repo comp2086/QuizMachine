@@ -47,16 +47,8 @@ void storage::saveUser(User &user, bool newUser = false)
 	// Sort users by the first name (case insensitive)
 	sort(users->begin(), users->end(),
 		[](User const &u1, User const &u2) -> bool {
-		string u1_firstName, u2_firstName, 
-			u1_lower_firstName, u2_lower_firstName;
 
-		u1_firstName = u1.getFirstName();
-		u2_firstName = u2.getFirstName();
-
-		u1_lower_firstName = strToLower(u1_firstName);
-		u2_lower_firstName = strToLower(u2_firstName);
-
-		return u1_lower_firstName < u2_lower_firstName;
+		return strToLower(u1.getFirstName()) < strToLower(u2.getFirstName());
 	});
 
 	// Write to the file
