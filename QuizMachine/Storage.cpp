@@ -38,16 +38,25 @@ void storage::saveUser(User &user, bool newUser = false)
 	{
 		for (User &user_ : *users)
 		{
-			if (user_.getFirstName() == user.getFirstName() &&
-				user_.getLastName() == user.getLastName())
+			if (strToLower(user_.getFirstName()) == strToLower(user.getFirstName()) &&
+				strToLower(user_.getLastName()) == strToLower(user.getLastName()))
 				user_.setScore(user.getScore());
 		}
 	}
 
-	// Sort users by the first name
+	// Sort users by the first name (case insensitive)
 	sort(users->begin(), users->end(),
 		[](User const &u1, User const &u2) -> bool {
-		return u1.getFirstName() < u2.getFirstName();
+		string u1_firstName, u2_firstName, 
+			u1_lower_firstName, u2_lower_firstName;
+
+		u1_firstName = u1.getFirstName();
+		u2_firstName = u2.getFirstName();
+
+		u1_lower_firstName = strToLower(u1_firstName);
+		u2_lower_firstName = strToLower(u2_firstName);
+
+		return u1_lower_firstName < u2_lower_firstName;
 	});
 
 	// Write to the file
@@ -92,8 +101,8 @@ User storage::findUser(string firstName, string lastName)
 	{
 		inFileStream >> fName >> lName >> score;
 
-		if (user.getFirstName() == fName &&
-			user.getLastName() == lName)
+		if (strToLower(user.getFirstName()) == strToLower(fName) &&
+			strToLower(user.getLastName()) == strToLower(lName))
 		{
 			user.setScore(score);
 			stop = true;
@@ -201,4 +210,17 @@ double storage::getAverageScore()
 	users = nullptr;
 
 	return average;
+}
+
+// Converts a string to the lower case
+string storage::strToLower(string str)
+{
+	string lowerCaseStr = "";
+
+	for (int i = 0; i < str.size(); i++)
+	{
+		lowerCaseStr += tolower(str[i]);
+	}
+
+	return lowerCaseStr;
 }

@@ -14,8 +14,7 @@ int main()
 {
 	string firstName = "", lastName = "";
 	int answer = 0, correctAnswersCount = 0,
-		questionsCounter = getQuestionsCount(),
-		totalQuestions = questionsCounter;
+		totalQuestions = getQuestionsCount();
 	char runQuizAgain = 'n';
 	bool newUser = false;
 
@@ -33,7 +32,7 @@ int main()
 	if (user.getScore() != -1.0)
 		cout << "\nYour highest score is: " 
 		<< setprecision(3)
-		<< user.getScore() << ' '
+		<< user.getScore() << '%'
 		<< endl;
 	else
 	{
@@ -47,11 +46,11 @@ int main()
 		// Tell cin to ignore everything or ignore until there's a newline character
 		cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
-		while (questionsCounter != 0)
+		for (int i = 1; i <= totalQuestions; i++)
 		{
 			// Display a question
 			Question question = getQuestion();
-			cout << '\n' << question.getQuestion() << "?\n" << endl;
+			cout << "\nQuestion #" << i << ": " << question.getQuestion() << "?\n" << endl;
 
 			// Display answers
 			for (int g = 0; g <= 3; g++)
@@ -68,12 +67,11 @@ int main()
 				correctAnswersCount += 1;
 
 			// Display the number of correct answers
-			if (questionsCounter > 1)
+			if (i < totalQuestions)
 				cout << "Score: " << correctAnswersCount 
 				<< "/" << totalQuestions << endl;
 
 			answer = 0;
-			questionsCounter -= 1;
 		}
 
 		// Display the score
@@ -99,7 +97,6 @@ int main()
 		}
 
 		// Reset the quiz variables and prompt to run the quiz again
-		questionsCounter = getQuestionsCount();
 		correctAnswersCount = 0;
 		cout << "One more time (y/n): ";
 		runQuizAgain = validateRunQuizAgain();
