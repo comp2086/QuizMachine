@@ -25,7 +25,7 @@ void storage::saveUser(User &user, bool newUser = false)
 	while (inFileStream >> fName >> lName >> score)
 	{
 		users->push_back(User(fName, lName, score));
-	} 
+	}
 	inFileStream.close();
 
 	// Add a new user
@@ -67,7 +67,7 @@ void storage::saveUser(User &user, bool newUser = false)
 
 	outFileStream.close();
 
-	// Free up memory
+	// Free up the memory
 	delete users;
 	users = nullptr;
 }
@@ -111,6 +111,12 @@ Question storage::getQuestion()
 	Question question;
 	ifstream inFileStream(questionsFile, ios::in);
 
+	if (!inFileStream)
+	{
+		cerr << "File could not be opened" << endl;
+		exit(EXIT_FAILURE);
+	}
+
 	// Move to the next location
 	inFileStream.seekg(location);
 
@@ -125,7 +131,7 @@ Question storage::getQuestion()
 	// Save location of the next question
 	location = static_cast<unsigned int>(inFileStream.tellg());
 
-	// Reset locatio if this is the end of file
+	// Reset location if this is the end of file
 	if (inFileStream.eof())
 		location = 0;
 
@@ -151,5 +157,48 @@ int storage::getQuestionsCount()
 	inFileStream.close();
 
 	// A question spans around 5 lines
-	return count/5;
+	return count / 5;
+}
+
+double storage::getAverageScore()
+{
+	double score, average;
+	string fName, lName;
+	vector<User> *users = new vector<User>();
+
+	ifstream inFileStream(usersFile, ios::in);
+	if (!inFileStream)
+	{
+		cerr << "File could not be opened" << endl;
+		exit(EXIT_FAILURE);
+	}
+
+	// Read all users
+	while (inFileStream >> fName >> lName >> score)
+	{
+		users->push_back(User(fName, lName, score));
+	}
+	inFileStream.close();
+
+	// Calculate the average
+	unsigned int usersCount = static_cast<unsigned int>((*users).size());
+	if (usersCount > 0)
+	{
+		score = 0;
+		for (User user : *users)
+		{
+			score += user.getScore();
+		}
+		average = score / usersCount;
+	}
+	else
+	{
+		average = -1;
+	}
+
+	// Free up the memory
+	delete users;
+	users = nullptr;
+
+	return average;
 }

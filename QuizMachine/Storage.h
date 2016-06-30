@@ -9,6 +9,7 @@ namespace storage
 	User findUser(std::string, std::string);
 	Question getQuestion();
 	int getQuestionsCount();
+	double getAverageScore();
 
 	static unsigned int location;
 	const std::string usersFile = "Users.txt";
